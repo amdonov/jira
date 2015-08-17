@@ -7,5 +7,5 @@ RUN chmod -R 777 /opt/atlassian/jira/logs /opt/atlassian/jira/work /opt/atlassia
 # Go ahead and set user even though it will be ignored in restricted context
 USER 1000
 EXPOSE 8080
-VOLUME ["/var/atlassian/application-data/jira"]
-CMD ["/opt/atlassian/jira/bin/start-jira.sh" "-fg"]
+VOLUME /var/atlassian/application-data/jira
+CMD /opt/atlassian/jira/bin/start-jira.sh -fg
