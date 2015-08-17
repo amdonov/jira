@@ -56,7 +56,7 @@
                         "imageChangeParams": {
                             "automatic": true,
                             "containerNames": [
-                                "postgresql-92-centos7"
+                                "jira-db"
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
@@ -79,12 +79,16 @@
                     "spec": {
                         "volumes": [
                             {
-                                "name": "jira-volume-1",
-                                "emptyDir": {}
+                                "name": "jira-app",
+                                "persistentVolumeClaim": {
+                                      "claimName": "jira-app"
+                                }
                             },
                             {
-                                "name": "postgresql-92-centos7-volume-1",
-                                "emptyDir": {}
+                                "name": "jira-db",
+                                "persistentVolumeClaim": {
+                                      "claimName": "jira-db"
+                                }
                             }
                         ],
                         "containers": [
@@ -97,30 +101,16 @@
                                         "protocol": "TCP"
                                     }
                                 ],
-                                "env": [
-                                    {
-                                        "name": "POSTGRESQL_DATABASE",
-                                        "value": "jira"
-                                    },
-                                    {
-                                        "name": "POSTGRESQL_PASSWORD",
-                                        "value": "jira123"
-                                    },
-                                    {
-                                        "name": "POSTGRESQL_USER",
-                                        "value": "jira"
-                                    }
-                                ],
                                 "resources": {},
                                 "volumeMounts": [
                                     {
-                                        "name": "jira-volume-1",
+                                        "name": "jira-app",
                                         "mountPath": "/var/atlassian/application-data/jira"
                                     }
                                 ]
                             },
                             {
-                                "name": "postgresql-92-centos7",
+                                "name": "jira-db",
                                 "image": "openshift/postgresql-92-centos7",
                                 "ports": [
                                     {
@@ -145,7 +135,7 @@
                                 "resources": {},
                                 "volumeMounts": [
                                     {
-                                        "name": "postgresql-92-centos7-volume-1",
+                                        "name": "jira-db",
                                         "mountPath": "/var/lib/pgsql/data"
                                     }
                                 ]
