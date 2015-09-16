@@ -58,7 +58,7 @@
                    useBodyEncodingForURI="true"
                    redirectPort="8443"
                    acceptCount="100"
-                   disableUploadTimeout="true"/>
+                   disableUploadTimeout="true" scheme="https" proxyName="www.dpp.gfclab.com" proxyPort="443" secure="true"/>
 
         <!--
                      ====================================================================================
