@@ -1,4 +1,4 @@
-FROM alpine:3.3
+FROM alpine:3.4
 ENV JAVA_HOME=/usr JIRA_HOME=/var/atlassian/application-data/jira
 RUN apk --update add curl bash openjdk8-jre && rm -rf /var/cache/apk/*
 RUN curl -k -o jira.tgz https://downloads.atlassian.com/software/jira/downloads/atlassian-jira-software-7.1.7-jira-7.1.7.tar.gz && \
